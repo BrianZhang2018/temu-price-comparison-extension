@@ -230,14 +230,43 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         return;
       }
       
-      chrome.tabs.create({ url: request.url }, (tab) => {
+      // Get the current tab to position the new tab next to it
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (chrome.runtime.lastError) {
-          console.error('Temu Price Comparison: Error opening tab:', chrome.runtime.lastError);
-          sendResponse({ success: false, error: chrome.runtime.lastError.message });
-        } else {
-          console.log('Temu Price Comparison: Opened new tab:', request.url);
-          sendResponse({ success: true, tabId: tab.id });
+          console.error('Temu Price Comparison: Error querying current tab:', chrome.runtime.lastError);
+          // Fallback to default tab creation
+          chrome.tabs.create({ url: request.url }, (tab) => {
+            if (chrome.runtime.lastError) {
+              console.error('Temu Price Comparison: Error opening tab:', chrome.runtime.lastError);
+              sendResponse({ success: false, error: chrome.runtime.lastError.message });
+            } else {
+              console.log('Temu Price Comparison: Opened new tab (fallback):', request.url);
+              sendResponse({ success: true, tabId: tab.id });
+            }
+          });
+          return;
         }
+        
+        const currentTab = tabs[0];
+        if (!currentTab) {
+          console.error('Temu Price Comparison: No current tab found');
+          sendResponse({ success: false, error: 'No current tab found' });
+          return;
+        }
+        
+        // Create new tab next to the current one
+        chrome.tabs.create({ 
+          url: request.url,
+          index: currentTab.index + 1  // Position next to current tab
+        }, (tab) => {
+          if (chrome.runtime.lastError) {
+            console.error('Temu Price Comparison: Error opening tab:', chrome.runtime.lastError);
+            sendResponse({ success: false, error: chrome.runtime.lastError.message });
+          } else {
+            console.log('Temu Price Comparison: Opened new tab next to current tab:', request.url);
+            sendResponse({ success: true, tabId: tab.id });
+          }
+        });
       });
     return true;
 
