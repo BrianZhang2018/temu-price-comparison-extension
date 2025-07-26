@@ -1,0 +1,26 @@
+{
+  "name": "temu-extension-tester",
+  "version": "1.0.0",
+  "description": "Automated testing script for Temu Price Comparison Chrome extension",
+  "main": "test-extension-automation.js",
+  "scripts": {
+    "test": "node test-extension-automation.js",
+    "test:quick": "node test-extension-automation.js --quick",
+    "test:service-worker": "node test-service-worker-logs.js",
+    "test:manual": "./manual-test-guide.sh",
+    "test:camping-chair": "./test-camping-chair.sh",
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "chrome-extension",
+    "testing",
+    "automation",
+    "puppeteer"
+  ],
+  "author": "",
+  "license": "MIT"
+} 
