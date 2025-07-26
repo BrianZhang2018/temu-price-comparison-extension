@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-26T03:41:57.880Z",
+  "timestamp": "2025-07-26T17:10:18.519Z",
   "summary": {
     "passed": 17,
     "failed": 2,
@@ -8,121 +8,121 @@
       {
         "name": "Chrome Launch",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:40:37.369Z",
+        "timestamp": "2025-07-26T17:08:58.315Z",
         "details": "Chrome launched successfully with extension"
       },
       {
         "name": "Service Worker Monitoring",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:40:39.655Z",
+        "timestamp": "2025-07-26T17:09:00.483Z",
         "details": "Successfully attached to service worker"
       },
       {
         "name": "Extension ID Detection",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:40:42.657Z",
+        "timestamp": "2025-07-26T17:09:03.485Z",
         "details": "Extension ID: jejohjihdepalhhlknefpdkckobdkjcb"
       },
       {
         "name": "Extension Visibility",
         "status": "FAIL",
-        "timestamp": "2025-07-26T03:40:43.320Z",
+        "timestamp": "2025-07-26T17:09:04.055Z",
         "details": "Extension not visible in extensions page"
       },
       {
         "name": "Service Worker Initialization",
         "status": "FAIL",
-        "timestamp": "2025-07-26T03:40:46.381Z",
+        "timestamp": "2025-07-26T17:09:07.115Z",
         "details": "No initialization logs found"
       },
       {
         "name": "Amazon Product Detection",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:40:54.026Z",
+        "timestamp": "2025-07-26T17:09:14.839Z",
         "details": "Product detected - Content logs: 0, Service worker logs: 2"
       },
       {
         "name": "Content Script Loading",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:40:54.099Z",
+        "timestamp": "2025-07-26T17:09:14.917Z",
         "details": "Extension working via service worker (21 logs) - content scripts not required"
       },
       {
         "name": "Extension UI Elements",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:01.360Z",
+        "timestamp": "2025-07-26T17:09:22.194Z",
         "details": "Found 2 UI elements (1 save buttons, 1 temu elements)"
       },
       {
         "name": "RSA URL Generation",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:08.647Z",
+        "timestamp": "2025-07-26T17:09:29.422Z",
         "details": "RSA URL generation detected (SW logs: 6, Page logs: 0)"
       },
       {
         "name": "Search Parameter Inclusion",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:08.648Z",
+        "timestamp": "2025-07-26T17:09:29.422Z",
         "details": "Search parameters detected in RSA URLs"
       },
       {
         "name": "Buy on Temu Button Detection",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:18.974Z",
+        "timestamp": "2025-07-26T17:09:39.720Z",
         "details": "Buttons detected - Temu: 1, Save: 1, Logs: 0"
       },
       {
         "name": "Temu Auto-Search Script Loading",
         "status": "SKIP",
-        "timestamp": "2025-07-26T03:41:24.818Z",
+        "timestamp": "2025-07-26T17:09:45.481Z",
         "details": "Auto-search script not detected (may be due to Temu page restrictions)"
       },
       {
         "name": "Search Parameter Detection",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:24.818Z",
+        "timestamp": "2025-07-26T17:09:45.481Z",
         "details": "Search parameter detected: null"
       },
       {
         "name": "Affiliate Parameter Handling",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:32.159Z",
+        "timestamp": "2025-07-26T17:09:52.748Z",
         "details": "Affiliate parameter handling detected (SW logs: 15, Page logs: 0)"
       },
       {
         "name": "Affiliate Parameter Preservation",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:32.160Z",
+        "timestamp": "2025-07-26T17:09:52.748Z",
         "details": "Parameter preservation detected in 10 logs"
       },
       {
         "name": "Page Navigation",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:40.163Z",
+        "timestamp": "2025-07-26T17:10:00.646Z",
         "details": "Successfully navigated between 2 pages"
       },
       {
         "name": "Extension Reload Simulation",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:42.235Z",
+        "timestamp": "2025-07-26T17:10:02.709Z",
         "details": "Extension still active (28 recent logs)"
       },
       {
         "name": "Error Handling",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:42.235Z",
+        "timestamp": "2025-07-26T17:10:02.709Z",
         "details": "No errors detected during testing"
       },
       {
         "name": "Performance",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:44.489Z",
-        "details": "Page loaded in 1926ms"
+        "timestamp": "2025-07-26T17:10:05.153Z",
+        "details": "Page loaded in 2132ms"
       },
       {
         "name": "End-to-End RSA Flow",
         "status": "PASS",
-        "timestamp": "2025-07-26T03:41:57.807Z",
+        "timestamp": "2025-07-26T17:10:18.452Z",
         "details": "RSA flow working: 3/5 steps completed"
       }
     ]
@@ -132,772 +132,772 @@
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.160Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.161Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.161Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.161Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.161Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Extracted Amazon price: 89",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.161Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Searching for Amazon product on Temu: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.161Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Amazon price: 89",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.161Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.162Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.162Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501249182_6lqcdw3rgeh&_x_sessn_id=tw1iw6b662",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549750082_3hhpo3q3u5&_x_sessn_id=dq2sew23km",
+        "timestamp": "2025-07-26T17:09:10.162Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Fetching search results from working URL",
-        "timestamp": "2025-07-26T03:40:49.232Z"
+        "timestamp": "2025-07-26T17:09:10.162Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search results received, HTML length: 776553",
-        "timestamp": "2025-07-26T03:40:49.652Z"
+        "timestamp": "2025-07-26T17:09:10.555Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsing Temu products from HTML",
-        "timestamp": "2025-07-26T03:40:49.652Z"
+        "timestamp": "2025-07-26T17:09:10.555Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: JSON parsing failed, trying regex fallback",
-        "timestamp": "2025-07-26T03:40:49.652Z"
+        "timestamp": "2025-07-26T17:09:10.555Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsed 0 products from search results",
-        "timestamp": "2025-07-26T03:40:49.653Z"
+        "timestamp": "2025-07-26T17:09:10.559Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:40:49.653Z"
+        "timestamp": "2025-07-26T17:09:10.559Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: generateWorkingSearchUrl",
-        "timestamp": "2025-07-26T03:40:49.663Z"
+        "timestamp": "2025-07-26T17:09:10.559Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:49.663Z"
+        "timestamp": "2025-07-26T17:09:10.561Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:49.663Z"
+        "timestamp": "2025-07-26T17:09:10.561Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501249612_7falh1aqrj4&_x_sessn_id=ra4ctje5j1",
-        "timestamp": "2025-07-26T03:40:49.663Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549750475_jvtmxh7uzi&_x_sessn_id=u20qv59cf3",
+        "timestamp": "2025-07-26T17:09:10.562Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:40:56.476Z"
+        "timestamp": "2025-07-26T17:09:17.387Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:40:56.477Z"
+        "timestamp": "2025-07-26T17:09:17.387Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:40:56.477Z"
+        "timestamp": "2025-07-26T17:09:17.387Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:40:56.477Z"
+        "timestamp": "2025-07-26T17:09:17.387Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "timestamp": "2025-07-26T17:09:17.387Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Extracted Amazon price: 89",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "timestamp": "2025-07-26T17:09:17.387Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Searching for Amazon product on Temu: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "timestamp": "2025-07-26T17:09:17.389Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Amazon price: 89",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "timestamp": "2025-07-26T17:09:17.389Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "timestamp": "2025-07-26T17:09:17.389Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "timestamp": "2025-07-26T17:09:17.389Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501256428_nw4jqrqtlu&_x_sessn_id=3sa9p9l69a",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549757338_jh6r3yri4eo&_x_sessn_id=unkumzakmb",
+        "timestamp": "2025-07-26T17:09:17.389Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Fetching search results from working URL",
-        "timestamp": "2025-07-26T03:40:56.478Z"
+        "timestamp": "2025-07-26T17:09:17.389Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search results received, HTML length: 775446",
-        "timestamp": "2025-07-26T03:40:56.931Z"
+        "timestamp": "2025-07-26T17:09:18.231Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsing Temu products from HTML",
-        "timestamp": "2025-07-26T03:40:56.931Z"
+        "timestamp": "2025-07-26T17:09:18.231Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: JSON parsing failed, trying regex fallback",
-        "timestamp": "2025-07-26T03:40:56.931Z"
+        "timestamp": "2025-07-26T17:09:18.233Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsed 0 products from search results",
-        "timestamp": "2025-07-26T03:40:56.944Z"
+        "timestamp": "2025-07-26T17:09:18.254Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:40:56.944Z"
+        "timestamp": "2025-07-26T17:09:18.255Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: generateWorkingSearchUrl",
-        "timestamp": "2025-07-26T03:40:56.944Z"
+        "timestamp": "2025-07-26T17:09:18.255Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:56.944Z"
+        "timestamp": "2025-07-26T17:09:18.255Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:40:56.944Z"
+        "timestamp": "2025-07-26T17:09:18.255Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501256894_nazxekt20w&_x_sessn_id=8c7946n9m8",
-        "timestamp": "2025-07-26T03:40:56.944Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549758204_lwjcl1gzalm&_x_sessn_id=6zqmgqsb5k",
+        "timestamp": "2025-07-26T17:09:18.255Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:41:03.850Z"
+        "timestamp": "2025-07-26T17:09:24.701Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Extracted Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Searching for Amazon product on Temu: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:03.851Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501263801_izkg7llot2o&_x_sessn_id=gmfk3q5b46",
-        "timestamp": "2025-07-26T03:41:03.852Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549764652_jyby1bwyn4h&_x_sessn_id=gcmoz2e504",
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Fetching search results from working URL",
-        "timestamp": "2025-07-26T03:41:03.852Z"
+        "timestamp": "2025-07-26T17:09:24.703Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search results received, HTML length: 775446",
-        "timestamp": "2025-07-26T03:41:04.247Z"
+        "timestamp": "2025-07-26T17:09:25.069Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsing Temu products from HTML",
-        "timestamp": "2025-07-26T03:41:04.247Z"
+        "timestamp": "2025-07-26T17:09:25.069Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: JSON parsing failed, trying regex fallback",
-        "timestamp": "2025-07-26T03:41:04.247Z"
+        "timestamp": "2025-07-26T17:09:25.069Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsed 0 products from search results",
-        "timestamp": "2025-07-26T03:41:04.274Z"
+        "timestamp": "2025-07-26T17:09:25.083Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:41:04.274Z"
+        "timestamp": "2025-07-26T17:09:25.083Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: generateWorkingSearchUrl",
-        "timestamp": "2025-07-26T03:41:04.279Z"
+        "timestamp": "2025-07-26T17:09:25.083Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:04.279Z"
+        "timestamp": "2025-07-26T17:09:25.083Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:04.279Z"
+        "timestamp": "2025-07-26T17:09:25.083Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501264229_7ox54zn3peu&_x_sessn_id=h8j5ht28wj",
-        "timestamp": "2025-07-26T03:41:04.279Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549765033_ei2u279ssa5&_x_sessn_id=1lsti9pqzs",
+        "timestamp": "2025-07-26T17:09:25.083Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:41:11.133Z"
+        "timestamp": "2025-07-26T17:09:31.998Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:11.133Z"
+        "timestamp": "2025-07-26T17:09:31.998Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Extracted Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Searching for Amazon product on Temu: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501271084_90loafd7x7n&_x_sessn_id=8k6lhgugf1",
-        "timestamp": "2025-07-26T03:41:11.134Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549771945_iuynn46m9r&_x_sessn_id=hvsk8nlk0o",
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Fetching search results from working URL",
-        "timestamp": "2025-07-26T03:41:11.135Z"
+        "timestamp": "2025-07-26T17:09:31.999Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search results received, HTML length: 775446",
-        "timestamp": "2025-07-26T03:41:11.669Z"
+        "timestamp": "2025-07-26T17:09:32.371Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsing Temu products from HTML",
-        "timestamp": "2025-07-26T03:41:11.669Z"
+        "timestamp": "2025-07-26T17:09:32.371Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: JSON parsing failed, trying regex fallback",
-        "timestamp": "2025-07-26T03:41:11.671Z"
+        "timestamp": "2025-07-26T17:09:32.371Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsed 0 products from search results",
-        "timestamp": "2025-07-26T03:41:11.687Z"
+        "timestamp": "2025-07-26T17:09:32.389Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:41:11.688Z"
+        "timestamp": "2025-07-26T17:09:32.389Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: generateWorkingSearchUrl",
-        "timestamp": "2025-07-26T03:41:11.688Z"
+        "timestamp": "2025-07-26T17:09:32.390Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:11.688Z"
+        "timestamp": "2025-07-26T17:09:32.390Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:11.688Z"
+        "timestamp": "2025-07-26T17:09:32.391Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501271638_c5fmn5jttf7&_x_sessn_id=ecmkkt8qgf",
-        "timestamp": "2025-07-26T03:41:11.688Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549772340_hhxpwf04y3&_x_sessn_id=grizvucw4f",
+        "timestamp": "2025-07-26T17:09:32.391Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:41:27.394Z"
+        "timestamp": "2025-07-26T17:09:48.065Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:27.396Z"
+        "timestamp": "2025-07-26T17:09:48.066Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:41:27.401Z"
+        "timestamp": "2025-07-26T17:09:48.066Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.066Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.066Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Extracted Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.066Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Searching for Amazon product on Temu: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.067Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.067Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.067Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.067Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501287345_k2utd92244m&_x_sessn_id=67khcmskt3",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549788016_9x543spfuy6&_x_sessn_id=k1f9vizt8j",
+        "timestamp": "2025-07-26T17:09:48.067Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Fetching search results from working URL",
-        "timestamp": "2025-07-26T03:41:27.402Z"
+        "timestamp": "2025-07-26T17:09:48.067Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Search results received, HTML length: 775446",
-        "timestamp": "2025-07-26T03:41:27.497Z"
+        "text": "Temu Price Comparison: Search results received, HTML length: 775809",
+        "timestamp": "2025-07-26T17:09:48.180Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsing Temu products from HTML",
-        "timestamp": "2025-07-26T03:41:27.497Z"
+        "timestamp": "2025-07-26T17:09:48.180Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: JSON parsing failed, trying regex fallback",
-        "timestamp": "2025-07-26T03:41:27.519Z"
+        "timestamp": "2025-07-26T17:09:48.181Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsed 0 products from search results",
-        "timestamp": "2025-07-26T03:41:27.541Z"
+        "timestamp": "2025-07-26T17:09:48.201Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:41:27.541Z"
+        "timestamp": "2025-07-26T17:09:48.201Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: generateWorkingSearchUrl",
-        "timestamp": "2025-07-26T03:41:27.543Z"
+        "timestamp": "2025-07-26T17:09:48.237Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:27.543Z"
+        "timestamp": "2025-07-26T17:09:48.237Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:27.543Z"
+        "timestamp": "2025-07-26T17:09:48.238Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501287492_tdzhdkbcnn&_x_sessn_id=51ybxvqnff",
-        "timestamp": "2025-07-26T03:41:27.543Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549788188_9cq23upy3f8&_x_sessn_id=jtz7oy2wso",
+        "timestamp": "2025-07-26T17:09:48.238Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:41:34.589Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:34.589Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Extracted Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Searching for Amazon product on Temu: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501294535_u4smi6h5fih&_x_sessn_id=7phirgpylf",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549795168_u4wa1lhtuak&_x_sessn_id=hkg7wgv1a8",
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Fetching search results from working URL",
-        "timestamp": "2025-07-26T03:41:34.590Z"
+        "timestamp": "2025-07-26T17:09:55.224Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Search results received, HTML length: 775446",
-        "timestamp": "2025-07-26T03:41:34.735Z"
+        "text": "Temu Price Comparison: Search results received, HTML length: 775809",
+        "timestamp": "2025-07-26T17:09:55.379Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsing Temu products from HTML",
-        "timestamp": "2025-07-26T03:41:34.735Z"
+        "timestamp": "2025-07-26T17:09:55.379Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: JSON parsing failed, trying regex fallback",
-        "timestamp": "2025-07-26T03:41:34.735Z"
+        "timestamp": "2025-07-26T17:09:55.380Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsed 0 products from search results",
-        "timestamp": "2025-07-26T03:41:34.735Z"
+        "timestamp": "2025-07-26T17:09:55.441Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:41:34.735Z"
+        "timestamp": "2025-07-26T17:09:55.441Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: generateWorkingSearchUrl",
-        "timestamp": "2025-07-26T03:41:34.769Z"
+        "timestamp": "2025-07-26T17:09:55.463Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:34.770Z"
+        "timestamp": "2025-07-26T17:09:55.463Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:34.770Z"
+        "timestamp": "2025-07-26T17:09:55.463Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501294720_57f9imgvmhn&_x_sessn_id=n0h7qxbwuq",
-        "timestamp": "2025-07-26T03:41:34.770Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549795413_xpucd273snd&_x_sessn_id=rj325rri82",
+        "timestamp": "2025-07-26T17:09:55.463Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:41:38.364Z"
+        "timestamp": "2025-07-26T17:09:58.848Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: Echo Dot (3rd Gen, 2018 release) - Smart speaker with Alexa - Charcoal",
-        "timestamp": "2025-07-26T03:41:38.364Z"
+        "timestamp": "2025-07-26T17:09:58.848Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:41:38.364Z"
+        "timestamp": "2025-07-26T17:09:58.849Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: Echo Dot (3rd Gen, 2018 release) - Smart",
-        "timestamp": "2025-07-26T03:41:38.364Z"
+        "timestamp": "2025-07-26T17:09:58.849Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: Echo Dot (3rd Gen, 2018 release) - Smart",
-        "timestamp": "2025-07-26T03:41:38.365Z"
+        "timestamp": "2025-07-26T17:09:58.849Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Invalid Amazon price, skipping search",
-        "timestamp": "2025-07-26T03:41:38.365Z"
+        "timestamp": "2025-07-26T17:09:58.849Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:41:38.365Z"
+        "timestamp": "2025-07-26T17:09:58.849Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: checkAmazonProduct",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Amazon product: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Using scraping mode",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Handling Temu search for: ABORON Oversized XXL Folding Camping Cot W/Mat for",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Extracted Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Searching for Amazon product on Temu: ABORON Oversized XXL Folding Camping Cot W/Mat for Adults, 78\" L x 32\" W x 18\" H Heavy Duty Outdoor Bed with Carry Bag,1200 D Layer Oxford Travel Camp Cots",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Amazon price: 89",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Search query: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501306905_4yezbpmslnk&_x_sessn_id=ewu1otuaik",
-        "timestamp": "2025-07-26T03:41:46.967Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549807645_1b4kwzn0la7&_x_sessn_id=bm237f5dxc",
+        "timestamp": "2025-07-26T17:10:07.694Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Fetching search results from working URL",
-        "timestamp": "2025-07-26T03:41:46.968Z"
+        "timestamp": "2025-07-26T17:10:07.695Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Search results received, HTML length: 775446",
-        "timestamp": "2025-07-26T03:41:47.155Z"
+        "text": "Temu Price Comparison: Search results received, HTML length: 775809",
+        "timestamp": "2025-07-26T17:10:07.821Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsing Temu products from HTML",
-        "timestamp": "2025-07-26T03:41:47.156Z"
+        "timestamp": "2025-07-26T17:10:07.825Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: JSON parsing failed, trying regex fallback",
-        "timestamp": "2025-07-26T03:41:47.156Z"
+        "timestamp": "2025-07-26T17:10:07.827Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Parsed 0 products from search results",
-        "timestamp": "2025-07-26T03:41:47.183Z"
+        "timestamp": "2025-07-26T17:10:07.846Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: No affiliate results found",
-        "timestamp": "2025-07-26T03:41:47.183Z"
+        "timestamp": "2025-07-26T17:10:07.846Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Received message: generateWorkingSearchUrl",
-        "timestamp": "2025-07-26T03:41:47.186Z"
+        "timestamp": "2025-07-26T17:10:07.850Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:47.186Z"
+        "timestamp": "2025-07-26T17:10:07.850Z"
       },
       {
         "type": "log",
         "text": "Temu Price Comparison: Generating working Temu search URL for: ABORON Oversized XXL Folding Camping Cot",
-        "timestamp": "2025-07-26T03:41:47.186Z"
+        "timestamp": "2025-07-26T17:10:07.850Z"
       },
       {
         "type": "log",
-        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753501307135_ounnxvkoaod&_x_sessn_id=5b7uiat6dw",
-        "timestamp": "2025-07-26T03:41:47.186Z"
+        "text": "Temu Price Comparison: Generated working search URL: https://www.temu.com/search_result.html?search_key=ABORON+Oversized+XXL+Folding+Camping+Cot&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=2000534466kol_affiliate&search_method=user&refer_page_name=kuiper&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_13870&refer_page_sn=13870&refer_page_id=13870_1753549807799_3qi727mplb9&_x_sessn_id=jcwvukymmo",
+        "timestamp": "2025-07-26T17:10:07.850Z"
       }
     ],
     "contentScript": [],

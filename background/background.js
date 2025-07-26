@@ -134,66 +134,11 @@ function getRSAUrl(productTitle = null) {
       return `${TEMU_RSA_URL}?search_key=${encodeURIComponent(cleanQuery)}`;
     }
   }
-  
+
   return TEMU_RSA_URL;
 }
 
-function buildAffiliateSearchUrl(baseUrl, searchQuery, affiliateParams = {}) {
-  // Build a proper search URL that maintains affiliate tracking
-  // Based on real RSA search URL pattern analysis
-  
-  try {
-    // Always use temu.com search_result.html for RSA searches
-    const searchUrl = new URL('https://www.temu.com/search_result.html');
-    
-    // Add search query
-    searchUrl.searchParams.set('search_key', searchQuery);
-    
-    // Add required static parameters (from real URL analysis)
-    searchUrl.searchParams.set('search_method', 'user');
-    searchUrl.searchParams.set('refer_page_name', 'kuiper');
-    searchUrl.searchParams.set('refer_page_el_sn', '200010');
-    searchUrl.searchParams.set('srch_enter_source', 'top_search_entrance_13870');
-    searchUrl.searchParams.set('refer_page_sn', '13870');
-    
-    // Generate dynamic parameters (matching real pattern)
-    const timestamp = Date.now();
-    const randomId = Math.random().toString(36).substr(2, 11);
-    searchUrl.searchParams.set('refer_page_id', `13870_${timestamp}_${randomId}`);
-    searchUrl.searchParams.set('_x_sessn_id', generateSessionId());
-    
-    // Add affiliate parameters from RSA page URL
-    if (baseUrl) {
-      try {
-        const rsaUrl = new URL(baseUrl);
-        // Copy critical affiliate tracking parameters
-        const affiliateParamKeys = ['_x_vst_scene', '_x_ads_channel', '_x_campaign', '_x_cid'];
-        affiliateParamKeys.forEach(param => {
-          if (rsaUrl.searchParams.has(param)) {
-            searchUrl.searchParams.set(param, rsaUrl.searchParams.get(param));
-          }
-        });
-      } catch (error) {
-        console.log('Temu Price Comparison: Could not parse RSA URL for affiliate params:', error.message);
-      }
-    }
-    
-    // Add any additional affiliate parameters passed in
-    Object.entries(affiliateParams).forEach(([key, value]) => {
-      if (value && !searchUrl.searchParams.has(key)) {
-        searchUrl.searchParams.set(key, value);
-      }
-    });
-    
-    console.log('Temu Price Comparison: Built proper affiliate search URL with all required parameters');
-    return searchUrl.toString();
-    
-  } catch (error) {
-    console.error('Temu Price Comparison: Error building affiliate search URL:', error);
-    // Fallback to generic search URL
-    return `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(searchQuery)}`;
-  }
-}
+
 
 function generateSessionId() {
   // Generate session ID similar to real examples (10 characters, alphanumeric)
@@ -224,26 +169,7 @@ function cleanProductTitleForSearch(title) {
     .join(' ');
 }
 
-// Test external request capability
-async function testExternalRequest() {
-  try {
-    console.log('Temu Price Comparison: Testing external request to Temu...');
-    const testResponse = await fetch('https://www.temu.com', {
-      method: 'HEAD',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
-      }
-    });
-    console.log('Temu Price Comparison: External request test successful:', testResponse.status);
-    return true;
-  } catch (error) {
-    console.error('Temu Price Comparison: External request test failed:', error);
-    return false;
-  }
-}
 
-// Run test when extension loads
-testExternalRequest();
 
 // Listen for messages from content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -460,115 +386,7 @@ async function handleAffiliateSearch(productData) {
   }
 }
 
-// FIX 2: Real affiliate page search (not separate URL construction)
-async function searchWithinAffiliatePage(affiliateUrl, query) {
-  try {
-    console.log('Temu Price Comparison: Getting products from affiliate RSA page for:', query);
-    
-    // Get the affiliate RSA page content
-    const affiliateResponse = await fetch(affiliateUrl, {
-      method: 'GET',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-      },
-      redirect: 'follow'
-    });
-    
-    if (!affiliateResponse.ok) {
-      throw new Error(`Failed to fetch affiliate page: ${affiliateResponse.status}`);
-    }
-    
-    const affiliateHtml = await affiliateResponse.text();
-    const currentUrl = affiliateResponse.url;
-    console.log('Temu Price Comparison: Affiliate page redirected to RSA page:', currentUrl);
-    
-    // Extract products directly from RSA page content using standard parser
-    return parseTemuProducts(affiliateHtml);
-    
-  } catch (error) {
-    console.error('Temu Price Comparison: RSA page product extraction failed:', error);
-    return [];
-  }
-}
 
-// NEW: Actually perform search on RSA page using its search functionality
-async function performSearchOnRSAPage(rsaPageUrl, searchQuery) {
-  try {
-    console.log('Temu Price Comparison: Performing affiliate search within RSA context');
-    console.log('Temu Price Comparison: RSA base URL:', rsaPageUrl);
-    console.log('Temu Price Comparison: Search query:', searchQuery);
-    
-    // Extract affiliate parameters from the RSA URL
-    const rsaUrl = new URL(rsaPageUrl);
-    const affiliateParams = {};
-    
-    // Collect all affiliate parameters
-    for (const [key, value] of rsaUrl.searchParams.entries()) {
-      if (key.startsWith('_') || key.includes('affiliate') || key.startsWith('g_') || key.includes('collection')) {
-        affiliateParams[key] = value;
-      }
-    }
-    
-    // Build proper affiliate search URL
-    const searchUrl = buildAffiliateSearchUrl(rsaPageUrl, searchQuery, affiliateParams);
-    
-    console.log('Temu Price Comparison: Built affiliate search URL:', searchUrl);
-    
-    // Perform the actual search request
-    const searchResponse = await fetch(searchUrl, {
-      method: 'GET',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Referer': rsaPageUrl,
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1'
-      }
-    });
-    
-    if (!searchResponse.ok) {
-      console.log('Temu Price Comparison: Search request failed with status:', searchResponse.status);
-      throw new Error(`Search request failed: ${searchResponse.status} ${searchResponse.statusText}`);
-    }
-    
-    const searchResultsHtml = await searchResponse.text();
-    console.log('Temu Price Comparison: Search results received, HTML length:', searchResultsHtml.length);
-    
-    // Extract products from the actual search results using standard parser
-    const searchProducts = parseTemuProducts(searchResultsHtml);
-    console.log('Temu Price Comparison: Extracted', searchProducts.length, 'products from search results');
-    
-    // Log sample search results
-    if (searchProducts.length > 0) {
-      console.log('Temu Price Comparison: Sample search results:');
-      searchProducts.slice(0, 5).forEach((product, index) => {
-        console.log(`  ${index + 1}. ${product.title} - ${product.price}`);
-      });
-    } else {
-      console.log('Temu Price Comparison: No products found in search results');
-      console.log('Temu Price Comparison: Search results HTML contains product data:', 
-        searchResultsHtml.includes('product') || searchResultsHtml.includes('goods') || searchResultsHtml.includes('item'));
-    }
-    
-      return {
-        success: true,
-      searchUrl: searchUrl.toString(),
-      products: searchProducts,
-      totalResults: searchProducts.length
-      };
-    
-  } catch (error) {
-    console.error('Temu Price Comparison: Error performing search on RSA page:', error);
-      return {
-        success: false,
-      error: error.message,
-      searchUrl: null,
-      products: []
-    };
-  }
-}
 
 // These RSA-specific extraction functions are no longer needed 
 // since we now use automated search with parseTemuProducts
@@ -634,72 +452,9 @@ async function handleTemuSearch(query, productData) {
 
 
 
-async function scrapeTemuSearch(query, productData) {
-  try {
-    console.log('Temu Price Comparison: DEPRECATED - Using legacy scraping fallback for:', query);
-    console.log('Temu Price Comparison: Consider using RSA page extraction instead');
-    
-    // DEPRECATED: This function still constructs URLs and should be replaced
-    // with RSA page extraction for proper affiliate context
-    const searchUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(query)}`;
-    console.log('Temu Price Comparison: DEPRECATED Search URL:', searchUrl);
-    
-    // Fetch the search results page
-    const response = await fetch(searchUrl);
-          const html = await response.text();
-    console.log('Temu Price Comparison: Fetched HTML, length:', html.length);
-          
-          // Parse the HTML to extract product information
-    const productMatches = extractProductDataWithRegex(html, query);
-    
-    console.log('Temu Price Comparison: Found product matches:', productMatches.length);
-    
-    if (productMatches && productMatches.length > 0) {
-      // Return the best matching product
-      const bestProduct = productMatches[0];
-      console.log('Temu Price Comparison: Best product found:', bestProduct);
-        return bestProduct;
-    }
-    
-    console.log('Temu Price Comparison: No valid product data found in HTML');
-    return null;
-    
-  } catch (error) {
-    console.error('Temu Price Comparison: Web scraping error:', error);
-    return null;
-  }
-}
 
-function parseTemuSearchResults(html, query) {
-  try {
-    console.log('Temu Price Comparison: Starting HTML parsing for query:', query);
-    console.log('Temu Price Comparison: HTML contains "goods_id":', html.includes('goods_id'));
-    console.log('Temu Price Comparison: HTML contains "price":', html.includes('price'));
-    console.log('Temu Price Comparison: HTML contains "goods_name":', html.includes('goods_name'));
-    
-    // Use regex to extract product information since DOMParser is not available in service workers
-    console.log('Temu Price Comparison: Parsing HTML with regex');
-    
-    // Look for product data patterns in the HTML
-    const productMatches = extractProductDataWithRegex(html, query);
-    
-    console.log('Temu Price Comparison: Found product matches:', productMatches.length);
-    
-    if (productMatches && productMatches.length > 0) {
-      // Return all valid products
-      const validProducts = productMatches.filter(product => product.price > 0);
-      console.log('Temu Price Comparison: Valid products found:', validProducts.length);
-      return validProducts;
-    }
-    
-    console.log('Temu Price Comparison: No valid product data found in HTML');
-    return [];
-    
-  } catch (error) {
-    console.error('Temu Price Comparison: HTML parsing error:', error);
-    return [];
-  }
-}
+
+
 
 function extractProductDataWithRegex(html, query) {
   const products = [];
@@ -1643,58 +1398,9 @@ async function searchAmazonProductOnRSA(amazonProduct) {
   }
 }
 
-// Generate session ID for search URLs
-function generateSessionId() {
-  return Math.random().toString(36).substr(2, 10);
-}
 
-async function handleTemuAffiliateSearch(productData) {
-  console.log('Temu Price Comparison: Starting affiliate-aware search for:', productData.title);
-  
-  try {
-    // Search using RSA page analysis approach
-    const searchResult = await searchAmazonProductOnRSA(productData);
-    
-    if (!searchResult.success) {
-      console.log('Temu Price Comparison: RSA search failed:', searchResult.error);
-      throw new Error(`RSA search failed: ${searchResult.error}`);
-    }
-    
-    console.log('Temu Price Comparison: RSA search completed successfully');
-    console.log('Temu Price Comparison: Found', searchResult.products.length, 'products in search results');
-    
-    // Find best match and cheaper products
-    const bestMatch = findBestProductMatch(productData, searchResult.products);
-    console.log('Temu Price Comparison: Amazon price:', productData.price);
-    
-    // Filter products cheaper than Amazon price
-    const cheaperProducts = filterCheaperProducts(searchResult.products, productData.price);
-    console.log('Temu Price Comparison: Found', cheaperProducts.length, 'cheaper products');
-    console.log('Temu Price Comparison: Returning', cheaperProducts.length, 'cheaper products from RSA search');
-    
-    return {
-      success: true,
-      searchUrl: searchResult.searchUrl,
-      searchResults: searchResult.products,
-      bestMatch,
-      cheaperProducts,
-      totalResults: searchResult.products.length,
-      searchQuery: cleanProductTitleForSearch(productData.title),
-      source: searchResult.source || 'rsa_analysis'
-    };
-    
-  } catch (error) {
-    console.error('Temu Price Comparison: Affiliate search failed:', error);
-    return {
-      success: false,
-      error: error.message,
-      cheaperProducts: [],
-      searchResults: [],
-      searchUrl: null,
-      source: 'rsa_analysis'
-    };
-  }
-}
+
+
 
 // Generate working Temu search URL with affiliate tracking for rewards
 function generateWorkingTemuSearchUrl(searchQuery) {

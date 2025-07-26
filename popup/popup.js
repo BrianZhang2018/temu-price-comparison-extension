@@ -36,7 +36,7 @@ function loadCurrentData() {
   
   // Update status
   document.getElementById('status').textContent = 'Ready';
-}
+  }
 
 
 
