@@ -16,83 +16,49 @@ class HotItemsManager {
 
   async loadHotItems() {
     try {
-      // Try to load from affiliate data first
-      const affiliateData = await chrome.storage.local.get(['affiliateHotItems', 'lastAffiliateUpdate']);
-      
-      if (affiliateData.affiliateHotItems && affiliateData.affiliateHotItems.length > 0) {
-        // Check if data is fresh (less than 30 minutes old)
-        const thirtyMinutesAgo = Date.now() - (30 * 60 * 1000);
-        if (affiliateData.lastAffiliateUpdate && affiliateData.lastAffiliateUpdate > thirtyMinutesAgo) {
-          this.hotItems = affiliateData.affiliateHotItems;
+      // Load hot items from local JSON file
+      const response = await fetch(chrome.runtime.getURL('data/hot-items.json'));
+      const data = await response.json();
+      this.hotItems = data.hotItems || [];
       this.isLoaded = true;
-          console.log('Temu Price Comparison: Loaded hot items from affiliate data:', this.hotItems.length, 'items');
-          return;
-        }
-      }
-      
-      // If no affiliate data or data is stale, try to update from affiliate page
-      const affiliateProducts = await updateHotItemsFromAffiliate();
-      
-      if (affiliateProducts && affiliateProducts.length > 0) {
-        this.hotItems = affiliateProducts;
-        this.isLoaded = true;
-        console.log('Temu Price Comparison: Loaded hot items from fresh affiliate data:', this.hotItems.length, 'items');
-        return;
-      }
-      
-      // Fallback to hardcoded items if affiliate loading fails
+      console.log('Temu Price Comparison: Loaded', this.hotItems.length, 'hot items from local data');
+    } catch (error) {
+      console.error('Temu Price Comparison: Failed to load hot items:', error);
+      // Fallback to hardcoded items
       this.hotItems = [
         {
-          id: 'temu_best_seller',
-          title: 'Temu Best Seller',
-          price: 9.99,
-          originalPrice: 19.99,
-          imageUrl: 'https://img.temu.com/images/temu_best_seller.jpg',
-          affiliateUrl: 'https://temu.to/k/punow4xcbj4',
+          id: 'hot_001',
+          title: "Temu Best Deals",
+          price: 1.55,
+          originalPrice: 29.99,
+          imageUrl: 'https://img.temu.com/images/storefront1.jpg',
+          affiliateUrl: 'https://temu.to/k/p41m6s2oved',
           category: 'general',
-          tags: ['best seller', 'popular', 'deal'],
+          tags: ['best deals', 'affiliate', 'storefront'],
           rating: 4.8,
-          reviews: 5000,
-          salesCount: '10K+sold',
-          savings: 50
+          reviews: 10000,
+          salesCount: '50K+sold',
+          savings: 95,
+          description: 'Curated selection of highly rated, well-priced items'
         },
         {
-          id: 'temu_lowest_30d',
+          id: 'hot_002', 
           title: 'Lowest Price in Last 30 Days',
-          price: 4.99,
-          originalPrice: 12.99,
-          imageUrl: 'https://img.temu.com/images/temu_lowest_30d.jpg',
-          affiliateUrl: 'https://temu.to/k/pcyqsfnn9d1',
+          price: 9.96,
+          originalPrice: 20.73,
+          imageUrl: 'https://img.temu.com/images/storefront2.jpg',
+          affiliateUrl: 'https://temu.to/k/pbu92q40kay',
           category: 'general',
-          tags: ['lowest price', '30 days', 'deal'],
+          tags: ['lowest price', '30 days', 'big savings'],
           rating: 4.7,
-          reviews: 3200,
-          salesCount: '5K+sold',
-          savings: 62
+          reviews: 15000,
+          salesCount: '100K+sold',
+          savings: 52,
+          description: 'Biggest savings with lowest prices in 30 days'
         }
       ];
       this.isLoaded = true;
-      console.log('Temu Price Comparison: Loaded fallback hot items:', this.hotItems);
-    } catch (error) {
-      console.error('Temu Price Comparison: Error loading hot items:', error);
-      // Set fallback items
-      this.hotItems = [
-        {
-          id: 'temu_best_seller',
-          title: 'Temu Best Seller',
-          price: 9.99,
-          originalPrice: 19.99,
-          imageUrl: 'https://img.temu.com/images/temu_best_seller.jpg',
-          affiliateUrl: 'https://temu.to/k/punow4xcbj4',
-          category: 'general',
-          tags: ['best seller', 'popular', 'deal'],
-          rating: 4.8,
-          reviews: 5000,
-          salesCount: '10K+sold',
-          savings: 50
-        }
-      ];
-      this.isLoaded = true;
+      console.log('Temu Price Comparison: Loaded fallback hot items');
     }
   }
 
@@ -124,18 +90,32 @@ setInterval(() => {
 // Temu RSA (Referral Shopping Assistant) configuration
 const TEMU_RSA_URL = 'https://temu.to/k/punow4xcbj4';
 
-function getRSAUrl(productTitle = null) {
-  // Always return the base RSA URL for "Buy on Temu" buttons
-  // The RSA page will handle the redirect and affiliate tracking
-  if (productTitle) {
-    const cleanQuery = cleanProductTitleForSearch(productTitle);
-    if (cleanQuery) {
-      // Add search parameter to the RSA URL - it will be passed through the redirect
-      return `${TEMU_RSA_URL}?search_key=${encodeURIComponent(cleanQuery)}`;
+async function getRSAUrl(productTitle = null) {
+  try {
+    // Try to get the stored redirected RSA URL first
+    const storedData = await chrome.storage.local.get(['baseRsaUrl']);
+    let baseUrl = storedData.baseRsaUrl || TEMU_RSA_URL;
+    
+    // If we have a product title, add search parameters
+    if (productTitle) {
+      const cleanQuery = cleanProductTitleForSearch(productTitle);
+      if (cleanQuery) {
+        // If it's the original affiliate URL, add search parameter
+        if (baseUrl === TEMU_RSA_URL) {
+          return `${baseUrl}?search_key=${encodeURIComponent(cleanQuery)}`;
+        } else {
+          // If it's the redirected URL, we might need to handle it differently
+          // For now, return the base redirected URL
+          return baseUrl;
+        }
+      }
     }
-  }
 
-  return TEMU_RSA_URL;
+    return baseUrl;
+  } catch (error) {
+    console.error('Temu Price Comparison: Error getting RSA URL:', error);
+    return TEMU_RSA_URL;
+  }
 }
 
 
@@ -317,10 +297,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
     case 'testAffiliateLink':
-      const affiliateUrl = getRSAUrl();
-      sendResponse({
-        success: true,
-        affiliateUrl: affiliateUrl
+      getRSAUrl().then(affiliateUrl => {
+        sendResponse({
+          success: true,
+          affiliateUrl: affiliateUrl
+        });
+      }).catch(error => {
+        sendResponse({
+          success: false,
+          error: error.message
+        });
       });
       return true;
 
@@ -485,7 +471,7 @@ async function handleTemuSearch(query, productData) {
 
 
 
-function extractProductDataWithRegex(html, query) {
+async function extractProductDataWithRegex(html, query) {
   const products = [];
   
   try {
@@ -531,7 +517,7 @@ function extractProductDataWithRegex(html, query) {
           const product = {
             title: `Similar ${query.split(' ').slice(0, 3).join(' ')}`,
             price: foundPrice,
-            url: getRSAUrl(query),
+            url: await getRSAUrl(query),
             productId: productId,
             imageUrl: '',
             rating: (3.5 + Math.random() * 1.5).toFixed(1),
@@ -611,7 +597,7 @@ function extractProductDataWithRegex(html, query) {
             const product = {
               title: productName,
               price: price,
-              url: getRSAUrl(query),
+              url: await getRSAUrl(query),
               productId: productId,
               imageUrl: '',
               rating: (3.5 + Math.random() * 1.5).toFixed(1),
@@ -655,17 +641,17 @@ function extractProductDataWithRegex(html, query) {
             
             // Look for reasonable prices (not $1, $0, etc.)
             if (price > 5 && price < 1000) { // More reasonable price range
-              const product = {
-                title: `Similar ${query.split(' ').slice(0, 3).join(' ')}`,
-                price: price,
-                url: getRSAUrl(query),
-                productId: 'rsa-product',
-                imageUrl: '',
-                rating: (3.5 + Math.random() * 1.5).toFixed(1),
-                reviews: Math.floor(Math.random() * 1000) + 50,
-                shipping: 'Free Shipping',
-                seller: 'Temu Official Store'
-              };
+                          const product = {
+              title: `Similar ${query.split(' ').slice(0, 3).join(' ')}`,
+              price: price,
+              url: await getRSAUrl(query),
+              productId: 'rsa-product',
+              imageUrl: '',
+              rating: (3.5 + Math.random() * 1.5).toFixed(1),
+              reviews: Math.floor(Math.random() * 1000) + 50,
+              shipping: 'Free Shipping',
+              seller: 'Temu Official Store'
+            };
               products.push(product);
               console.log('Temu Price Comparison: Added product from price pattern with affiliate URL:', product.url);
               break; // Use the first reasonable price found
@@ -696,7 +682,7 @@ function extractProductDataWithRegex(html, query) {
             const product = {
               title: `Similar ${query.split(' ').slice(0, 3).join(' ')}`,
               price: price,
-              url: getRSAUrl(query),
+              url: await getRSAUrl(query),
               productId: 'rsa-product',
               imageUrl: '',
               rating: (3.5 + Math.random() * 1.5).toFixed(1),
@@ -987,7 +973,7 @@ function findCheaperFallbackProduct(allProducts, productData) {
   return null;
 }
 
-function generateFallbackProduct(query, productData) {
+async function generateFallbackProduct(query, productData) {
   // Fallback to simulated data if scraping fails
   const amazonPrice = productData.price || 0;
   const priceReduction = 0.3 + Math.random() * 0.4; // 30-70% reduction
@@ -1001,7 +987,7 @@ function generateFallbackProduct(query, productData) {
     console.log('Temu Price Comparison: Creating simulated fallback with query:', bestQuery.query);
     
     // Use RSA URL with search query - the RSA page will handle product search
-    const affiliateUrl = getRSAUrl(query);
+    const affiliateUrl = await getRSAUrl(query);
     
     return {
       title: `Similar ${query.split(' ').slice(0, 3).join(' ')}`,
@@ -1067,95 +1053,169 @@ function findBestProductMatch(amazonProduct, temuProducts) {
   return bestMatch;
 }
 
-// Fetch affiliate page HTML
+// Fetch affiliate page HTML and get redirected URL
 async function fetchAffiliatePage() {
   try {
-    console.log('Temu Price Comparison: Fetching affiliate page...');
-    const response = await fetch('https://temu.to/k/punow4xcbj4');
+    console.log('Temu Price Comparison: Fetching affiliate page with redirect following...');
+    
+    // First, follow the redirect to get the actual RSA page URL
+    const affiliateUrl = 'https://temu.to/k/punow4xcbj4';
+    
+    // Use fetch with redirect: 'follow' to get the final URL
+    const response = await fetch(affiliateUrl, {
+      method: 'GET',
+      redirect: 'follow',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive'
+      }
+    });
+    
     const html = await response.text();
-    console.log('Temu Price Comparison: Successfully fetched affiliate page HTML');
-    return html;
+    const finalUrl = response.url; // This is the redirected URL
+    
+    console.log('Temu Price Comparison: Affiliate redirect followed successfully');
+    console.log('Temu Price Comparison: Original affiliate URL:', affiliateUrl);
+    console.log('Temu Price Comparison: Final redirected URL:', finalUrl);
+    console.log('Temu Price Comparison: HTML content length:', html.length);
+    
+    // Store the redirected URL as the base RSA URL
+    await chrome.storage.local.set({ 
+      baseRsaUrl: finalUrl,
+      lastRsaUrlUpdate: Date.now()
+    });
+    
+    return { html, finalUrl };
+    
   } catch (error) {
     console.error('Temu Price Comparison: Error fetching affiliate page:', error);
-    return null;
+    return { html: null, finalUrl: null };
   }
 }
 
-// Parse affiliate page HTML to extract products
+// Parse affiliate page HTML to extract products from actual content
 function parseAffiliateProducts(html) {
   try {
-    console.log('Temu Price Comparison: Parsing affiliate page HTML for JSON data...');
+    console.log('Temu Price Comparison: Parsing affiliate page HTML for product data...');
     const products = [];
     
-    // Look for JSON data embedded in the HTML
-    // The data is in a script tag with window.__INITIAL_PROPS__
-    const jsonDataPattern = /window\.__INITIAL_PROPS__\s*=\s*({.*?});/s;
-    const match = html.match(jsonDataPattern);
+    if (!html) {
+      console.log('Temu Price Comparison: No HTML content to parse');
+      return products;
+    }
     
-    if (match) {
-      try {
-        const jsonData = JSON.parse(match[1]);
-        console.log('Temu Price Comparison: Found JSON data in affiliate page');
+    // Extract products from the HTML content using regex patterns
+    // Based on the actual page structure from the affiliate page
+    
+    // Pattern 1: Extract product titles, ratings, prices, and sales data
+    // Format: Product Title (rating) $price salesCount
+    const productPattern = /([^(]+?)\s*\(([^)]+)\)\s*\$\s*([\d.]+)\s*([^$\n]+?sold)/g;
+    
+    let match;
+    let productCount = 0;
+    
+    while ((match = productPattern.exec(html)) !== null && productCount < 50) {
+      const [, title, rating, price, salesCount] = match;
+      
+      if (title && price) {
+        const cleanTitle = title.trim();
+        const cleanRating = rating.trim();
+        const cleanPrice = parseFloat(price);
+        const cleanSalesCount = salesCount.trim();
         
-        // Extract products from the JSON data
-        if (jsonData.shareStore && jsonData.shareStore.listMainGoodsSimpleInfo) {
-          // Single product case
-          const product = jsonData.shareStore.listMainGoodsSimpleInfo;
-          products.push(extractProductFromJSON(product));
+        // Skip if title is too short or price is invalid
+        if (cleanTitle.length < 10 || isNaN(cleanPrice) || cleanPrice <= 0) {
+          continue;
         }
         
-        // Look for product list in the JSON structure
-        if (jsonData.shareStore && jsonData.shareStore.recGoodsList) {
-          jsonData.shareStore.recGoodsList.forEach(product => {
-            if (product.dsItemType === 'GOODS') {
-              products.push(extractProductFromJSON(product));
-            }
-          });
-        }
+        // Determine category based on product title
+        const category = determineProductCategory(cleanTitle);
         
-        // Also check for goodsList in different locations
-        if (jsonData.goodsList && Array.isArray(jsonData.goodsList)) {
-          jsonData.goodsList.forEach(product => {
-            if (product.dsItemType === 'GOODS') {
-              products.push(extractProductFromJSON(product));
-            }
-          });
-        }
+        // Calculate savings percentage (estimate based on typical Temu pricing)
+        const estimatedOriginalPrice = cleanPrice * (1.5 + Math.random() * 0.5); // 50-100% markup
+        const savings = Math.round(((estimatedOriginalPrice - cleanPrice) / estimatedOriginalPrice) * 100);
         
-        console.log('Temu Price Comparison: Extracted', products.length, 'products from JSON data');
-        return products;
+        const product = {
+          id: `affiliate_product_${productCount + 1}`,
+          title: cleanTitle,
+          price: cleanPrice,
+          originalPrice: parseFloat(estimatedOriginalPrice.toFixed(2)),
+          imageUrl: '', // Will be filled later if needed
+          affiliateUrl: 'https://temu.to/k/punow4xcbj4',
+          category: category,
+          tags: generateProductTags(cleanTitle, category),
+          rating: parseFloat(cleanRating.replace(/[^\d.]/g, '')) || 4.5,
+          reviews: parseInt(cleanRating.replace(/[^\d]/g, '')) || Math.floor(Math.random() * 5000) + 1000,
+          salesCount: cleanSalesCount,
+          savings: savings
+        };
         
-      } catch (jsonError) {
-        console.error('Temu Price Comparison: Error parsing JSON data:', jsonError);
+        products.push(product);
+        productCount++;
+        
+        console.log(`Temu Price Comparison: Extracted product ${productCount}:`, {
+          title: cleanTitle.substring(0, 50) + '...',
+          price: `$${cleanPrice}`,
+          category: category,
+          salesCount: cleanSalesCount
+        });
       }
     }
     
-    // Fallback: Try to find product data in other script tags
-    const productDataPattern = /"goodsId":(\d+),"goodsName":"([^"]+)","priceInfo":\{"price":(\d+),"currency":"([^"]+)","priceStr":"([^"]+)"[^}]*"image":\{"url":"([^"]+)"/g;
-    let productMatch;
-    
-    while ((productMatch = productDataPattern.exec(html)) !== null) {
-      const [, goodsId, goodsName, price, currency, priceStr, imageUrl] = productMatch;
+    // Pattern 2: Fallback - look for price patterns if first pattern didn't work
+    if (products.length === 0) {
+      console.log('Temu Price Comparison: Primary pattern failed, trying fallback patterns...');
       
-      const product = {
-        id: `affiliate_product_${goodsId}`,
-        title: goodsName.replace(/\\u002F/g, '/').replace(/\\/g, ''),
-        price: parseFloat(price) / 100, // Price is in cents
-        originalPrice: parseFloat(price) / 100 * 1.5, // Estimate
-        imageUrl: imageUrl.replace(/\\u002F/g, '/').replace(/\\/g, ''),
-        affiliateUrl: 'https://temu.to/k/punow4xcbj4',
-        category: 'affiliate',
-        tags: ['affiliate', 'best seller', 'deal'],
-        rating: 4.5,
-        reviews: Math.floor(Math.random() * 5000) + 1000,
-        salesCount: '1K+',
-        savings: 25
-      };
+      // Look for price patterns: $XX.XX
+      const pricePattern = /\$\s*([\d.]+)/g;
+      const priceMatches = [...html.matchAll(pricePattern)];
       
-      products.push(product);
+      // Look for product titles (long text before prices)
+      const titlePattern = /([A-Z][^$]+?)\s*\$\s*[\d.]+/g;
+      const titleMatches = [...html.matchAll(titlePattern)];
+      
+      console.log('Temu Price Comparison: Found price matches:', priceMatches.length);
+      console.log('Temu Price Comparison: Found title matches:', titleMatches.length);
+      
+      // Combine price and title data
+      for (let i = 0; i < Math.min(priceMatches.length, titleMatches.length, 20); i++) {
+        const priceMatch = priceMatches[i];
+        const titleMatch = titleMatches[i];
+        
+        if (priceMatch && titleMatch) {
+          const price = parseFloat(priceMatch[1]);
+          const title = titleMatch[1].trim();
+          
+          if (price > 0 && title.length > 10) {
+            const category = determineProductCategory(title);
+            const estimatedOriginalPrice = price * (1.5 + Math.random() * 0.5);
+            const savings = Math.round(((estimatedOriginalPrice - price) / estimatedOriginalPrice) * 100);
+            
+            const product = {
+              id: `affiliate_product_fallback_${i + 1}`,
+              title: title,
+              price: price,
+              originalPrice: parseFloat(estimatedOriginalPrice.toFixed(2)),
+              imageUrl: '',
+              affiliateUrl: 'https://temu.to/k/punow4xcbj4',
+              category: category,
+              tags: generateProductTags(title, category),
+              rating: 4.5,
+              reviews: Math.floor(Math.random() * 5000) + 1000,
+              salesCount: '1K+',
+              savings: savings
+            };
+            
+            products.push(product);
+          }
+        }
+      }
     }
     
-    console.log('Temu Price Comparison: Extracted', products.length, 'products from regex fallback');
+    console.log('Temu Price Comparison: Total products extracted:', products.length);
     return products;
     
   } catch (error) {
@@ -1164,49 +1224,85 @@ function parseAffiliateProducts(html) {
   }
 }
 
-// Helper function to extract product data from JSON structure
-function extractProductFromJSON(productData) {
-  try {
-    const priceInfo = productData.priceInfo || {};
-    const image = productData.image || {};
-    
-    return {
-      id: `affiliate_product_${productData.goodsId}`,
-      title: productData.goodsName || 'Product',
-      price: (priceInfo.price || 0) / 100, // Convert from cents
-      originalPrice: (priceInfo.originalPrice || priceInfo.price || 0) / 100,
-      imageUrl: image.url || 'https://img.temu.com/images/default.jpg',
-      affiliateUrl: 'https://temu.to/k/punow4xcbj4',
-      category: 'affiliate',
-      tags: ['affiliate', 'best seller', 'deal'],
-      rating: 4.5,
-      reviews: Math.floor(Math.random() * 5000) + 1000,
-      salesCount: '1K+',
-      savings: Math.round(((priceInfo.originalPrice - priceInfo.price) / priceInfo.originalPrice) * 100) || 25
-    };
-  } catch (error) {
-    console.error('Temu Price Comparison: Error extracting product from JSON:', error);
-    return null;
+// Helper function to determine product category based on title
+function determineProductCategory(title) {
+  const lowerTitle = title.toLowerCase();
+  
+  // Electronics
+  if (lowerTitle.includes('phone') || lowerTitle.includes('laptop') || lowerTitle.includes('computer') || 
+      lowerTitle.includes('tablet') || lowerTitle.includes('earbuds') || lowerTitle.includes('headphones') ||
+      lowerTitle.includes('charger') || lowerTitle.includes('cable') || lowerTitle.includes('wireless') ||
+      lowerTitle.includes('bluetooth') || lowerTitle.includes('sewing machine') || lowerTitle.includes('power strip') ||
+      lowerTitle.includes('ice maker') || lowerTitle.includes('air blower') || lowerTitle.includes('fan')) {
+    return 'electronics';
   }
+  
+  // Home & Garden
+  if (lowerTitle.includes('light') || lowerTitle.includes('lamp') || lowerTitle.includes('decor') || 
+      lowerTitle.includes('kitchen') || lowerTitle.includes('bathroom') || lowerTitle.includes('bedroom') ||
+      lowerTitle.includes('living') || lowerTitle.includes('furniture') || lowerTitle.includes('mattress') ||
+      lowerTitle.includes('pillow') || lowerTitle.includes('bed') || lowerTitle.includes('storage') ||
+      lowerTitle.includes('cabinet') || lowerTitle.includes('shelf') || lowerTitle.includes('mirror') ||
+      lowerTitle.includes('table') || lowerTitle.includes('cart') || lowerTitle.includes('lawn mower') ||
+      lowerTitle.includes('garden') || lowerTitle.includes('camping')) {
+    return 'home';
+  }
+  
+  // Fashion
+  if (lowerTitle.includes('shirt') || lowerTitle.includes('dress') || lowerTitle.includes('shoes') || 
+      lowerTitle.includes('bag') || lowerTitle.includes('jewelry') || lowerTitle.includes('watch') ||
+      lowerTitle.includes('accessory') || lowerTitle.includes('vest') || lowerTitle.includes('pants') ||
+      lowerTitle.includes('backpack') || lowerTitle.includes('clothing')) {
+    return 'fashion';
+  }
+  
+  // Accessories
+  if (lowerTitle.includes('case') || lowerTitle.includes('holder') || lowerTitle.includes('stand') || 
+      lowerTitle.includes('cover') || lowerTitle.includes('protector') || lowerTitle.includes('mount')) {
+    return 'accessories';
+  }
+  
+  // Default to general
+  return 'general';
+}
+
+// Helper function to generate product tags based on title and category
+function generateProductTags(title, category) {
+  const tags = [category, 'affiliate', 'deal'];
+  const lowerTitle = title.toLowerCase();
+  
+  // Add specific tags based on keywords
+  if (lowerTitle.includes('wireless')) tags.push('wireless');
+  if (lowerTitle.includes('portable')) tags.push('portable');
+  if (lowerTitle.includes('folding')) tags.push('folding');
+  if (lowerTitle.includes('heavy duty')) tags.push('heavy-duty');
+  if (lowerTitle.includes('upgraded')) tags.push('upgraded');
+  if (lowerTitle.includes('best seller')) tags.push('best-seller');
+  if (lowerTitle.includes('new')) tags.push('new');
+  if (lowerTitle.includes('free')) tags.push('free-shipping');
+  
+  return tags;
 }
 
 // Update hot items with affiliate data
 async function updateHotItemsFromAffiliate() {
   try {
     console.log('Temu Price Comparison: Updating hot items from affiliate page...');
-    const html = await fetchAffiliatePage();
+    const { html, finalUrl } = await fetchAffiliatePage();
     
-    if (html) {
+    if (html && finalUrl) {
       const affiliateProducts = parseAffiliateProducts(html);
       
       if (affiliateProducts.length > 0) {
-        // Store affiliate products in local storage
+        // Store affiliate products and redirected URL in local storage
         await chrome.storage.local.set({ 
           affiliateHotItems: affiliateProducts,
-          lastAffiliateUpdate: Date.now()
+          lastAffiliateUpdate: Date.now(),
+          baseRsaUrl: finalUrl
         });
         
         console.log('Temu Price Comparison: Updated hot items with', affiliateProducts.length, 'affiliate products');
+        console.log('Temu Price Comparison: Base RSA URL updated to:', finalUrl);
         return affiliateProducts;
       } else {
         console.log('Temu Price Comparison: No products parsed from affiliate page, using fallback');

@@ -22,32 +22,25 @@ function initializePopup() {
 function loadCurrentData() {
   // Load hot items
   loadHotItems();
-  
-  // Load extension stats
-  chrome.storage.local.get(['extensionData'], (result) => {
-    const data = result.extensionData || {
-      searches: 0,
-      savings: 0
-    };
-    
-    document.getElementById('searches').textContent = data.searches;
-    document.getElementById('savings').textContent = `$${data.savings.toFixed(2)}`;
-  });
-  
-  // Update status
-  document.getElementById('status').textContent = 'Ready';
-  }
-
-
-
-function setupEventListeners() {
-  // Action buttons
-  document.getElementById('refresh-hot-items').addEventListener('click', function() {
-    refreshHotItems();
-  });
 }
 
-
+function setupEventListeners() {
+  // Removed: Action buttons event listener for refresh-hot-items
+  
+  // Add event listener for feedback email link
+  const feedbackLink = document.getElementById('feedback-email');
+  if (feedbackLink) {
+    feedbackLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const email = 'bzz79987@gmail.com';
+      const subject = 'Temu Price Comparison Feedback';
+      const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+      
+      // Open the mailto link in a new tab to ensure it works
+      chrome.tabs.create({ url: mailtoUrl });
+    });
+  }
+}
 
 function showNotification(message) {
   // Create notification element
@@ -105,12 +98,20 @@ function displayHotItems(hotItems) {
       Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 
       item.savings || 0;
     
+    // Fix image URL to use chrome.runtime.getURL() for extension assets
+    let imageUrl = item.imageUrl;
+    if (imageUrl && imageUrl.includes('chrome-extension://__MSG_@@extension_id__/')) {
+      // Convert to proper chrome.runtime.getURL() format
+      const assetPath = imageUrl.replace('chrome-extension://__MSG_@@extension_id__/', '');
+      imageUrl = chrome.runtime.getURL(assetPath);
+    }
+    
     hotItemElement.innerHTML = `
       <div class="hot-item-content">
-        <img src="${item.imageUrl || 'https://via.placeholder.com/50x50?text=Item'}" 
+        <img src="${imageUrl || 'https://via.placeholder.com/45x45?text=Item'}" 
              alt="${item.title}" 
              class="hot-item-image"
-             onerror="this.src='https://via.placeholder.com/50x50?text=Item'">
+             onerror="this.src='https://via.placeholder.com/45x45?text=Item'">
         <div class="hot-item-info">
           <div class="hot-item-title">${item.title}</div>
           <div class="hot-item-price">
@@ -132,21 +133,6 @@ function displayHotItems(hotItems) {
     });
     
     hotItemsList.appendChild(hotItemElement);
-  });
-}
-
-function refreshHotItems() {
-  document.getElementById('status').textContent = 'Refreshing hot items...';
-  
-  // Refresh hot items in background
-  chrome.runtime.sendMessage({ action: 'refreshHotItems' }, (response) => {
-    if (response && response.success) {
-      document.getElementById('status').textContent = `Hot items refreshed (${response.count} items)`;
-      // Reload the hot items list
-      loadHotItems();
-    } else {
-      document.getElementById('status').textContent = 'Failed to refresh hot items';
-    }
   });
 }
 
