@@ -1331,19 +1331,19 @@ chrome.storage.local.get(['extensionData'], (result) => {
   }
 });
 
-// Update extension badge
-function updateBadge() {
-  chrome.storage.local.get(['extensionData'], (result) => {
-    if (result.extensionData) {
-      const searches = result.extensionData.searches || 0;
-      chrome.action.setBadgeText({ text: searches.toString() });
-      chrome.action.setBadgeBackgroundColor({ color: '#fb7701' });
-    }
-  });
-}
+// Update extension badge - DISABLED to remove "0" from icon
+// function updateBadge() {
+//   chrome.storage.local.get(['extensionData'], (result) => {
+//     if (result.extensionData) {
+//       const searches = result.extensionData.searches || 0;
+//       chrome.action.setBadgeText({ text: searches.toString() });
+//       chrome.action.setBadgeBackgroundColor({ color: '#fb7701' });
+//     }
+//   });
+// }
 
-// Initialize badge
-updateBadge();
+// Initialize badge - DISABLED
+// updateBadge();
 
 // Initialize Hot Items Manager
 HOT_ITEMS_MANAGER = new HotItemsManager();
