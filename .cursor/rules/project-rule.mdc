@@ -1,0 +1,4 @@
+---
+alwaysApply: true
+---
+increase the extension version and auto install it after every feature update or bug fix

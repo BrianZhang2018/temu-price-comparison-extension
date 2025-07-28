@@ -1,0 +1,258 @@
+/* Temu Price Comparison - Popup Styles */
+
+body {
+  width: 320px;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f8f9fa;
+}
+
+.container {
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #fb7701;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.version {
+  font-size: 11px;
+  color: #666;
+  background: #fb7701;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.hot-items-section {
+  margin-bottom: 16px;
+}
+
+.hot-items-section h3 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hot-items-section h3::before {
+  content: "🔥";
+  font-size: 16px;
+}
+
+.hot-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hot-item-card {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.hot-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(251, 119, 1, 0.2);
+  border-color: #fb7701;
+}
+
+.hot-item-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #fb7701, #ff6b35);
+}
+
+.hot-item-content {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.hot-item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid #eee;
+  background: #f8f9fa;
+}
+
+.hot-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hot-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.hot-item-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.hot-item-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.current-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fb7701;
+}
+
+.original-price {
+  font-size: 11px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.hot-item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.hot-item-stats {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  color: #666;
+}
+
+.hot-item-savings {
+  background: #e8f5e8;
+  color: #2e7d32;
+  padding: 3px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.hot-item-description {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+.hot-item-tags {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.hot-item-tag {
+  background: #f0f0f0;
+  color: #666;
+  padding: 2px 4px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.loading {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+  font-size: 12px;
+}
+
+.no-hot-items {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 10px;
+  color: #999;
+}
+
+/* Animation for loading */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 320px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .hot-item-card {
+    padding: 10px;
+  }
+  
+  .hot-item-title {
+    font-size: 12px;
+  }
+  
+  .current-price {
+    font-size: 14px;
+  }
+  
+  .hot-item-image {
+    width: 50px;
+    height: 50px;
+  }
+} 

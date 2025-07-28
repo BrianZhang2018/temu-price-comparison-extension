@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Temu Price Comparison",
+  "version": "2.3.0",
+  "description": "Compare Amazon prices with Temu prices and find the best deals",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.amazon.com/*",
+    "https://www.temu.com/*",
+    "https://temu.to/*"
+  ],
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.com/*"],
+      "js": ["content/content.js"]
+    },
+    {
+      "matches": ["https://www.temu.com/*", "https://temu.to/*"],
+      "js": ["content/temu-search.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  }
+} 

@@ -1,0 +1,36 @@
+{
+  "hotItems": [
+    {
+      "id": "affiliate_1",
+      "title": "B***Z's Storefront - Best Deals",
+      "price": 1.55,
+      "originalPrice": 29.99,
+      "imageUrl": "chrome-extension://__MSG_@@extension_id__/assets/icons/affiliate-1.png",
+      "affiliateUrl": "https://temu.to/k/p41m6s2oved",
+      "category": "general",
+      "tags": ["best deals", "affiliate", "storefront"],
+      "rating": 4.8,
+      "reviews": 10000,
+      "salesCount": "50K+sold",
+      "savings": 95,
+      "description": "Curated selection of highly rated, well-priced items"
+    },
+    {
+      "id": "affiliate_2", 
+      "title": "Lowest Price in Last 30 Days",
+      "price": 9.96,
+      "originalPrice": 20.73,
+      "imageUrl": "chrome-extension://__MSG_@@extension_id__/assets/icons/affiliate-2.png",
+      "affiliateUrl": "https://temu.to/k/pbu92q40kay",
+      "category": "general",
+      "tags": ["lowest price", "30 days", "big savings"],
+      "rating": 4.7,
+      "reviews": 15000,
+      "salesCount": "100K+sold",
+      "savings": 52,
+      "description": "Biggest savings with lowest prices in 30 days"
+    }
+  ],
+  "lastUpdated": "2024-01-15T10:00:00Z",
+  "version": "1.0"
+} 

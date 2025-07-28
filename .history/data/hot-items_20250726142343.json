@@ -1,0 +1,71 @@
+{
+  "hotItems": [
+    {
+      "id": "hot_001",
+      "title": "Wireless Bluetooth Earbuds",
+      "price": 12.99,
+      "originalPrice": 29.99,
+      "imageUrl": "https://img.temu.com/images/earbuds.jpg",
+      "affiliateUrl": "https://temu.to/k/ale098003?product_id=earbuds_001",
+      "category": "electronics",
+      "tags": ["wireless", "bluetooth", "audio", "earbuds"],
+      "rating": 4.6,
+      "reviews": 2847,
+      "savings": 56.7
+    },
+    {
+      "id": "hot_002", 
+      "title": "Smart Watch Fitness Tracker",
+      "price": 18.50,
+      "originalPrice": 45.00,
+      "imageUrl": "https://img.temu.com/images/smartwatch.jpg",
+      "affiliateUrl": "https://temu.to/k/ale098003?product_id=watch_002",
+      "category": "electronics",
+      "tags": ["smartwatch", "fitness", "tracker", "health"],
+      "rating": 4.4,
+      "reviews": 1923,
+      "savings": 58.9
+    },
+    {
+      "id": "hot_003",
+      "title": "Portable Phone Charger 10000mAh",
+      "price": 8.99,
+      "originalPrice": 22.50,
+      "imageUrl": "https://img.temu.com/images/charger.jpg",
+      "affiliateUrl": "https://temu.to/k/ale098003?product_id=charger_003",
+      "category": "electronics",
+      "tags": ["charger", "portable", "powerbank", "phone"],
+      "rating": 4.7,
+      "reviews": 3456,
+      "savings": 60.0
+    },
+    {
+      "id": "hot_004",
+      "title": "LED Strip Lights 16.4ft",
+      "price": 6.50,
+      "originalPrice": 18.00,
+      "imageUrl": "https://img.temu.com/images/ledstrip.jpg",
+      "affiliateUrl": "https://temu.to/k/ale098003?product_id=led_004",
+      "category": "home",
+      "tags": ["led", "lights", "strip", "decor"],
+      "rating": 4.5,
+      "reviews": 2156,
+      "savings": 63.9
+    },
+    {
+      "id": "hot_005",
+      "title": "Wireless Phone Stand Holder",
+      "price": 4.99,
+      "originalPrice": 15.00,
+      "imageUrl": "https://img.temu.com/images/phoneholder.jpg",
+      "affiliateUrl": "https://temu.to/k/ale098003?product_id=holder_005",
+      "category": "accessories",
+      "tags": ["phone", "stand", "holder", "wireless"],
+      "rating": 4.3,
+      "reviews": 1876,
+      "savings": 66.7
+    }
+  ],
+  "lastUpdated": "2024-01-15T10:00:00Z",
+  "version": "1.0"
+} 

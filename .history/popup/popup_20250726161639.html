@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Temu Price Comparison</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Temu Price Comparison</h1>
+      <div class="version">v2.3.0</div>
+    </div>
+    
+    <div class="hot-items-section">
+      <h3>🔥 Hot Items on Temu</h3>
+      <div id="hot-items-list" class="hot-items-list">
+        <div class="loading">Loading hot items...</div>
+      </div>
+    </div>
+    
+    <div class="status-section">
+      <div class="status-item">
+        <span class="status-label">Status:</span>
+        <span id="status" class="status-value">Ready</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Searches:</span>
+        <span id="searches" class="status-value">0</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Savings:</span>
+        <span id="savings" class="status-value">$0.00</span>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button id="refresh-hot-items" class="action-btn">Refresh Hot Items</button>
+    </div>
+    
+    <div class="footer">
+      <p>Click on hot items to visit Temu storefronts</p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html> 
