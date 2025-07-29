@@ -96,7 +96,9 @@ Save money by comparing Amazon prices with Temu! Find better deals automatically
 
 ---
 
+**Affiliate Disclosure**: This extension uses affiliate links to Temu. When you click "Buy on Temu" buttons, we may earn a small commission at no additional cost to you. This helps support the development and maintenance of this free extension.
+
 **Note**: This extension is not affiliated with Amazon or Temu. It's an independent tool designed to help you find the best prices across different shopping platforms.
 
-**Version**: 2.3.0
-**Last Updated**: July 26, 2024 
+**Version**: 2.4.0
+**Last Updated**: July 29, 2024 

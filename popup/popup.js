@@ -37,7 +37,7 @@ function setupEventListeners() {
       const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
       
       // Open the mailto link in a new tab to ensure it works
-      chrome.tabs.create({ url: mailtoUrl });
+      window.open(mailtoUrl, '_blank');
     });
   }
 }
@@ -129,7 +129,7 @@ function displayHotItems(hotItems) {
     
     hotItemElement.addEventListener('click', () => {
       console.log('Opening hot item:', item.affiliateUrl || item.url);
-      chrome.tabs.create({ url: item.affiliateUrl || item.url });
+      window.open(item.affiliateUrl || item.url, '_blank');
     });
     
     hotItemsList.appendChild(hotItemElement);
