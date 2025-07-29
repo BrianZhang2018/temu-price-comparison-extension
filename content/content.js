@@ -305,15 +305,37 @@ class AmazonProductExtractor {
         console.log('Temu Price Comparison: Product title:', temuProduct.title);
         console.log('Temu Price Comparison: Product price: $' + temuProduct.price);
         
-        // Show URL popup instead of opening tab directly
-        showUrlPopup(workingUrl, 'Temu Search Results');
+        // Use chrome.runtime.sendMessage to open tab via background script
+        chrome.runtime.sendMessage({
+          action: 'openTab',
+          url: workingUrl
+        }, (response) => {
+          if (response && response.success) {
+            console.log('Temu Price Comparison: ✅ Working search tab opened successfully');
+          } else {
+            console.error('Temu Price Comparison: ❌ Failed to open working search tab');
+            // Fallback to window.open if chrome.tabs fails
+            window.open(workingUrl, '_blank');
+          }
+        });
         
       }).catch(error => {
         console.error('Temu Price Comparison: Failed to get working search URL:', error);
         
         // Fallback: Use basic search URL
         const fallbackUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(productQuery)}`;
-        showUrlPopup(fallbackUrl, 'Temu Search Results (Fallback)');
+        chrome.runtime.sendMessage({
+          action: 'openTab',
+          url: fallbackUrl
+        }, (response) => {
+          if (response && response.success) {
+            console.log('Temu Price Comparison: ✅ Fallback search tab opened successfully');
+          } else {
+            console.error('Temu Price Comparison: ❌ Failed to open fallback search tab');
+            // Last resort fallback to window.open
+            window.open(fallbackUrl, '_blank');
+          }
+        });
       });
     };
     
@@ -390,8 +412,19 @@ class AmazonProductExtractor {
         console.log('Temu Price Comparison: Product title:', amazonProduct.title);
         console.log('Temu Price Comparison: Product price: $' + amazonProduct.price);
         
-        // Show URL popup instead of opening tab directly
-        showUrlPopup(workingUrl, 'Buy on Temu');
+        // Use chrome.runtime.sendMessage to open tab via background script
+        chrome.runtime.sendMessage({
+          action: 'openTab',
+          url: workingUrl
+        }, (response) => {
+          if (response && response.success) {
+            console.log('Temu Price Comparison: ✅ Working search tab opened successfully');
+          } else {
+            console.error('Temu Price Comparison: ❌ Failed to open working search tab');
+            // Fallback to window.open if chrome.tabs fails
+            window.open(workingUrl, '_blank');
+          }
+        });
       };
     }).catch(error => {
       console.error('Temu Price Comparison: Failed to get working search URL:', error);
@@ -400,8 +433,19 @@ class AmazonProductExtractor {
         console.log('Temu Price Comparison: 🚀 USER CLICKED "Buy on Temu" (fallback)');
         const fallbackUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(productQuery)}`;
         
-        // Show URL popup for fallback
-        showUrlPopup(fallbackUrl, 'Buy on Temu (Fallback)');
+        // Use chrome.runtime.sendMessage for fallback
+        chrome.runtime.sendMessage({
+          action: 'openTab',
+          url: fallbackUrl
+        }, (response) => {
+          if (response && response.success) {
+            console.log('Temu Price Comparison: ✅ Fallback search tab opened successfully');
+          } else {
+            console.error('Temu Price Comparison: ❌ Failed to open fallback search tab');
+            // Last resort fallback to window.open
+            window.open(fallbackUrl, '_blank');
+          }
+        });
       };
     });
     
@@ -625,15 +669,27 @@ function handleBuyOnTemuClick(item) {
       getWorkingTemuSearchUrl(productQuery).then(workingUrl => {
         console.log('Temu Price Comparison: Opening working search URL:', workingUrl);
         
-        // Show URL popup instead of opening tab directly
-        showUrlPopup(workingUrl, 'Temu Search Results');
+        // Open the working search URL directly
+    chrome.runtime.sendMessage({
+      action: 'openTab',
+          url: workingUrl
+    }, (response) => {
+          if (response && response.success) {
+            console.log('Temu Price Comparison: Working search tab opened successfully');
+          } else {
+            console.error('Temu Price Comparison: Failed to open working search tab');
+          }
+        });
         
       }).catch(error => {
         console.error('Temu Price Comparison: Failed to get working search URL:', error);
         
         // Fallback: Open basic search URL
         const fallbackUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(productQuery)}`;
-        showUrlPopup(fallbackUrl, 'Temu Search Results (Fallback)');
+      chrome.runtime.sendMessage({
+          action: 'openTab',
+          url: fallbackUrl
+        });
       });
       
           } else {
@@ -1020,105 +1076,4 @@ function showOriginalHotItems(amazonProduct) {
 
 console.log('🧪 Content script test functions loaded:');
 console.log('   testSaveButton() - Manually trigger T Save button');
-console.log('   checkSaveButton() - Check if T Save button exists');
-
-// URL popup function to display URLs instead of opening tabs directly
-function showUrlPopup(url, title = 'Temu URL') {
-  console.log('Temu Price Comparison: Showing URL popup for:', url);
-  
-  // Create popup container
-  const popup = document.createElement('div');
-  popup.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border: 2px solid #fb7701;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    padding: 20px;
-    font-family: inherit;
-    font-size: 14px;
-    z-index: 10004;
-    max-width: 500px;
-    width: 90%;
-  `;
-  
-  popup.innerHTML = `
-    <div style="position: relative;">
-      <button id="url-popup-close" style="position: absolute; top: -10px; right: -10px; background: #666; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10005;">×</button>
-      
-      <div style="font-weight: bold; color: #fb7701; font-size: 16px; margin-bottom: 15px;">${title}</div>
-      
-      <div style="margin-bottom: 15px;">
-        <div style="font-weight: bold; margin-bottom: 5px; color: #333;">Click the link below to open Temu:</div>
-        <a href="${url}" target="_blank" style="color: #fb7701; text-decoration: underline; word-break: break-all; display: block; margin-bottom: 10px;">${url}</a>
-      </div>
-      
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <button id="url-popup-copy" style="flex: 1; background: #28a745; color: white; border: none; border-radius: 6px; padding: 10px; font-weight: bold; cursor: pointer; min-width: 120px;">📋 Copy URL</button>
-        <button id="url-popup-open" style="flex: 1; background: #fb7701; color: white; border: none; border-radius: 6px; padding: 10px; font-weight: bold; cursor: pointer; min-width: 120px;">🔄 Try Open</button>
-      </div>
-      
-      <div style="font-size: 12px; color: #666; margin-top: 10px; font-style: italic;">
-        💡 If the link doesn't open automatically, copy the URL and paste it in a new tab
-      </div>
-    </div>
-  `;
-  
-  // Close button
-  popup.querySelector('#url-popup-close').onclick = () => {
-    document.body.removeChild(popup);
-  };
-  
-  // Copy URL button
-  popup.querySelector('#url-popup-copy').onclick = () => {
-    navigator.clipboard.writeText(url).then(() => {
-      const copyBtn = popup.querySelector('#url-popup-copy');
-      const originalText = copyBtn.textContent;
-      copyBtn.textContent = '✅ Copied!';
-      copyBtn.style.background = '#28a745';
-      setTimeout(() => {
-        copyBtn.textContent = originalText;
-      }, 2000);
-    }).catch(err => {
-      console.error('Failed to copy URL:', err);
-      // Fallback: select the URL text
-      const urlElement = popup.querySelector('a');
-      const range = document.createRange();
-      range.selectNodeContents(urlElement);
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    });
-  };
-  
-  // Try open button (attempts window.open as fallback)
-  popup.querySelector('#url-popup-open').onclick = () => {
-    try {
-      window.open(url, '_blank');
-      const openBtn = popup.querySelector('#url-popup-open');
-      const originalText = openBtn.textContent;
-      openBtn.textContent = '✅ Opened!';
-      openBtn.style.background = '#28a745';
-      setTimeout(() => {
-        openBtn.textContent = originalText;
-        openBtn.style.background = '#fb7701';
-      }, 2000);
-    } catch (error) {
-      console.error('Failed to open URL:', error);
-      const openBtn = popup.querySelector('#url-popup-open');
-      openBtn.textContent = '❌ Failed';
-      openBtn.style.background = '#dc3545';
-      setTimeout(() => {
-        openBtn.textContent = '🔄 Try Open';
-        openBtn.style.background = '#fb7701';
-      }, 2000);
-    }
-  };
-  
-  // Add to page
-  document.body.appendChild(popup);
-  console.log('Temu Price Comparison: URL popup displayed');
-} 
+console.log('   checkSaveButton() - Check if T Save button exists'); 

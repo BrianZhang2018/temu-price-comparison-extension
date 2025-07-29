@@ -203,7 +203,29 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }
       return true;
 
-
+    case 'openTab':
+      if (!request.url || typeof request.url !== 'string') {
+        console.error('Temu Price Comparison: Invalid URL for openTab:', request.url);
+        sendResponse({ success: false, error: 'Invalid URL' });
+        return;
+      }
+      
+      // Use chrome.tabs.create with activeTab permission
+      try {
+        chrome.tabs.create({ url: request.url }, (tab) => {
+          if (chrome.runtime.lastError) {
+            console.error('Temu Price Comparison: Error opening tab:', chrome.runtime.lastError);
+            sendResponse({ success: false, error: chrome.runtime.lastError.message });
+          } else {
+            console.log('Temu Price Comparison: Opened new tab:', request.url);
+            sendResponse({ success: true, tabId: tab.id });
+          }
+        });
+      } catch (error) {
+        console.error('Temu Price Comparison: Error opening tab:', error);
+        sendResponse({ success: false, error: error.message });
+      }
+    return true;
 
     case 'testHotItemsManager':
       try {
