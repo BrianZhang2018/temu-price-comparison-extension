@@ -305,37 +305,29 @@ class AmazonProductExtractor {
         console.log('Temu Price Comparison: Product title:', temuProduct.title);
         console.log('Temu Price Comparison: Product price: $' + temuProduct.price);
         
-        // Use chrome.runtime.sendMessage to open tab via background script
-        chrome.runtime.sendMessage({
-          action: 'openTab',
-          url: workingUrl
-        }, (response) => {
-          if (response && response.success) {
-            console.log('Temu Price Comparison: ✅ Working search tab opened successfully');
-          } else {
-            console.error('Temu Price Comparison: ❌ Failed to open working search tab');
-            // Fallback to window.open if chrome.tabs fails
-            window.open(workingUrl, '_blank');
-          }
-        });
+        // Open URL directly in content script
+        try {
+          window.open(workingUrl, '_blank');
+          console.log('Temu Price Comparison: ✅ Working search tab opened successfully');
+        } catch (error) {
+          console.error('Temu Price Comparison: ❌ Failed to open working search tab:', error);
+          // Fallback: try to open in same tab
+          window.location.href = workingUrl;
+        }
         
       }).catch(error => {
         console.error('Temu Price Comparison: Failed to get working search URL:', error);
         
         // Fallback: Use basic search URL
         const fallbackUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(productQuery)}`;
-        chrome.runtime.sendMessage({
-          action: 'openTab',
-          url: fallbackUrl
-        }, (response) => {
-          if (response && response.success) {
-            console.log('Temu Price Comparison: ✅ Fallback search tab opened successfully');
-          } else {
-            console.error('Temu Price Comparison: ❌ Failed to open fallback search tab');
-            // Last resort fallback to window.open
-            window.open(fallbackUrl, '_blank');
-          }
-        });
+        try {
+          window.open(fallbackUrl, '_blank');
+          console.log('Temu Price Comparison: ✅ Fallback search tab opened successfully');
+        } catch (error) {
+          console.error('Temu Price Comparison: ❌ Failed to open fallback search tab:', error);
+          // Last resort fallback: try to open in same tab
+          window.location.href = fallbackUrl;
+        }
       });
     };
     
@@ -412,19 +404,15 @@ class AmazonProductExtractor {
         console.log('Temu Price Comparison: Product title:', amazonProduct.title);
         console.log('Temu Price Comparison: Product price: $' + amazonProduct.price);
         
-        // Use chrome.runtime.sendMessage to open tab via background script
-        chrome.runtime.sendMessage({
-          action: 'openTab',
-          url: workingUrl
-        }, (response) => {
-          if (response && response.success) {
-            console.log('Temu Price Comparison: ✅ Working search tab opened successfully');
-          } else {
-            console.error('Temu Price Comparison: ❌ Failed to open working search tab');
-            // Fallback to window.open if chrome.tabs fails
-            window.open(workingUrl, '_blank');
-          }
-        });
+        // Open URL directly in content script
+        try {
+          window.open(workingUrl, '_blank');
+          console.log('Temu Price Comparison: ✅ Working search tab opened successfully');
+        } catch (error) {
+          console.error('Temu Price Comparison: ❌ Failed to open working search tab:', error);
+          // Fallback: try to open in same tab
+          window.location.href = workingUrl;
+        }
       };
     }).catch(error => {
       console.error('Temu Price Comparison: Failed to get working search URL:', error);
@@ -433,19 +421,15 @@ class AmazonProductExtractor {
         console.log('Temu Price Comparison: 🚀 USER CLICKED "Buy on Temu" (fallback)');
         const fallbackUrl = `https://www.temu.com/search_result.html?search_key=${encodeURIComponent(productQuery)}`;
         
-        // Use chrome.runtime.sendMessage for fallback
-        chrome.runtime.sendMessage({
-          action: 'openTab',
-          url: fallbackUrl
-        }, (response) => {
-          if (response && response.success) {
-            console.log('Temu Price Comparison: ✅ Fallback search tab opened successfully');
-          } else {
-            console.error('Temu Price Comparison: ❌ Failed to open fallback search tab');
-            // Last resort fallback to window.open
-            window.open(fallbackUrl, '_blank');
-          }
-        });
+        // Open URL directly in content script
+        try {
+          window.open(fallbackUrl, '_blank');
+          console.log('Temu Price Comparison: ✅ Fallback search tab opened successfully');
+        } catch (error) {
+          console.error('Temu Price Comparison: ❌ Failed to open fallback search tab:', error);
+          // Last resort fallback: try to open in same tab
+          window.location.href = fallbackUrl;
+        }
       };
     });
     

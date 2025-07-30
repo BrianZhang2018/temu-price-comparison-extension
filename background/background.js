@@ -210,21 +210,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         return;
       }
       
-      // Use chrome.tabs.create with activeTab permission
-      try {
-        chrome.tabs.create({ url: request.url }, (tab) => {
-          if (chrome.runtime.lastError) {
-            console.error('Temu Price Comparison: Error opening tab:', chrome.runtime.lastError);
-            sendResponse({ success: false, error: chrome.runtime.lastError.message });
-          } else {
-            console.log('Temu Price Comparison: Opened new tab:', request.url);
-            sendResponse({ success: true, tabId: tab.id });
-          }
-        });
-      } catch (error) {
-        console.error('Temu Price Comparison: Error opening tab:', error);
-        sendResponse({ success: false, error: error.message });
-      }
+      // Return the URL for the content script to handle
+      sendResponse({ 
+        success: true, 
+        url: request.url,
+        message: 'URL provided for content script to handle'
+      });
     return true;
 
     case 'testHotItemsManager':

@@ -37,15 +37,7 @@ function setupEventListeners() {
       const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
       
       // Open the mailto link in a new tab to ensure it works
-      chrome.runtime.sendMessage({
-        action: 'openTab',
-        url: mailtoUrl
-      }, (response) => {
-        if (!response || !response.success) {
-          // Fallback to window.open if chrome.tabs fails
-          window.open(mailtoUrl, '_blank');
-        }
-      });
+      window.open(mailtoUrl, '_blank');
     });
   }
 }
@@ -137,15 +129,7 @@ function displayHotItems(hotItems) {
     
     hotItemElement.addEventListener('click', () => {
       console.log('Opening hot item:', item.affiliateUrl || item.url);
-      chrome.runtime.sendMessage({
-        action: 'openTab',
-        url: item.affiliateUrl || item.url
-      }, (response) => {
-        if (!response || !response.success) {
-          // Fallback to window.open if chrome.tabs fails
-          window.open(item.affiliateUrl || item.url, '_blank');
-        }
-      });
+      window.open(item.affiliateUrl || item.url, '_blank');
     });
     
     hotItemsList.appendChild(hotItemElement);

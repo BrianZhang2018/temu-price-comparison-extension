@@ -87,6 +87,9 @@ public
 tmp/
 temp/
 
+# Cursor IDE history
+.history/
+
 # Logs
 logs
 *.log
