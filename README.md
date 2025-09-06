@@ -166,7 +166,7 @@ temu-price-extension/
 
 ## 📊 Performance
 
-### **Current Performance       (MVP)**
+### **Current Performance  (MVP)**
 
 - **Load Time**: <2 seconds for price comparison
 - **Memory Usage**: <50MB extension memory
