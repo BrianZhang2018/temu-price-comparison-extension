@@ -1499,10 +1499,21 @@ async function searchAmazonProductOnRSA(amazonProduct) {
 function generateWorkingTemuSearchUrl(searchQuery) {
   try {
     console.log('Temu Price Comparison: Generating working Temu search URL for:', searchQuery);
-    
+
+    // Validate search query - prevent empty searches
+    if (!searchQuery || searchQuery.trim() === '') {
+      console.error('Temu Price Comparison: Empty search query provided');
+      return {
+        success: false,
+        error: 'Empty search query',
+        searchUrl: '',
+        affiliateTracking: false
+      };
+    }
+
     // Use direct Temu search that actually works
     const searchUrl = new URL('https://www.temu.com/search_result.html');
-    
+
     // Add the search query
     searchUrl.searchParams.set('search_key', searchQuery);
     

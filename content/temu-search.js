@@ -15,11 +15,14 @@ class TemuAutoSearch {
     // Check if we have a search parameter in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const searchKey = urlParams.get('search_key');
-    
-    if (searchKey && !this.searchAttempted) {
+
+    // Validate search key - prevent empty string searches
+    if (searchKey && searchKey.trim() !== '' && !this.searchAttempted) {
       console.log('🎯 Auto-search triggered for:', searchKey);
       this.searchAttempted = true;
       this.attemptAutoSearch(searchKey);
+    } else if (searchKey && searchKey.trim() === '') {
+      console.log('⚠️ Empty search key detected, skipping auto-search');
     }
   }
 
