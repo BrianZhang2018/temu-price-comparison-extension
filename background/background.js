@@ -188,11 +188,20 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           sendResponse({ success: false, error: 'Invalid product title' });
           return true;
         }
-        
+
         // Clean the product title for search
         const searchQuery = cleanProductTitleForSearch(request.productTitle);
+        console.log('Temu Price Comparison: Cleaned search query:', searchQuery);
+
+        // Validate cleaned query is not empty
+        if (!searchQuery || searchQuery.trim() === '') {
+          console.error('Temu Price Comparison: Cleaned search query is empty for product:', request.productTitle);
+          sendResponse({ success: false, error: 'Empty search query after cleaning' });
+          return true;
+        }
+
         console.log('Temu Price Comparison: Generating working URL for:', searchQuery);
-        
+
         // Generate working search URL with affiliate tracking
         const urlResult = generateWorkingTemuSearchUrl(searchQuery);
         sendResponse(urlResult);
@@ -1429,14 +1438,26 @@ async function searchAmazonProductOnRSA(amazonProduct) {
   try {
     console.log('Temu Price Comparison: Searching for Amazon product on Temu:', amazonProduct.title);
     console.log('Temu Price Comparison: Amazon price:', amazonProduct.price);
-    
+
     // Create search query from Amazon product title
     const searchQuery = cleanProductTitleForSearch(amazonProduct.title);
-    console.log('Temu Price Comparison: Search query:', searchQuery);
-    
+    console.log('Temu Price Comparison: Cleaned search query:', searchQuery);
+
+    // Validate cleaned query is not empty
+    if (!searchQuery || searchQuery.trim() === '') {
+      console.error('Temu Price Comparison: Cleaned search query is empty for product:', amazonProduct.title);
+      return {
+        success: false,
+        error: 'Empty search query after cleaning',
+        products: []
+      };
+    }
+
+    console.log('Temu Price Comparison: Valid search query:', searchQuery);
+
     // Generate working Temu search URL with affiliate tracking
     const urlResult = generateWorkingTemuSearchUrl(searchQuery);
-    
+
     if (!urlResult.success) {
       throw new Error('Failed to generate working Temu search URL');
     }
@@ -1516,10 +1537,14 @@ function generateWorkingTemuSearchUrl(searchQuery) {
 
     // Add the search query
     searchUrl.searchParams.set('search_key', searchQuery);
-    
+
+    // Add extension marker to identify redirects from Amazon
+    // This allows auto-search to only trigger on first visit from extension
+    searchUrl.searchParams.set('_from_extension', '1');
+
     // Add affiliate parameters for rewards tracking
     searchUrl.searchParams.set('_x_ads_channel', 'kol_affiliate');
-    searchUrl.searchParams.set('_x_campaign', 'affiliate'); 
+    searchUrl.searchParams.set('_x_campaign', 'affiliate');
     searchUrl.searchParams.set('_x_cid', '2000534466kol_affiliate');
     
     // Add required static parameters (from real working URLs)

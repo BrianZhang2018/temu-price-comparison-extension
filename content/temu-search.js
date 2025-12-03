@@ -15,6 +15,14 @@ class TemuAutoSearch {
     // Check if we have a search parameter in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const searchKey = urlParams.get('search_key');
+    const fromExtension = urlParams.get('_from_extension');
+
+    // Only auto-search if coming from extension (not already browsing Temu)
+    // This prevents redundant searches when user is already on Temu
+    if (!fromExtension) {
+      console.log('ℹ️ Not from extension, skipping auto-search (already on Temu)');
+      return;
+    }
 
     // Validate search key - prevent empty string searches
     if (searchKey && searchKey.trim() !== '' && !this.searchAttempted) {
