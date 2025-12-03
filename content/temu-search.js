@@ -12,6 +12,13 @@ class TemuAutoSearch {
   }
 
   init() {
+    // DISABLED: Auto-search is not needed because Temu URLs with search_key
+    // parameter already show search results automatically when opened.
+    // Auto-search was causing redundant searches and issues with empty strings.
+    console.log('ℹ️ Auto-search disabled - Temu handles search_key parameter automatically');
+    return;
+
+    // OLD CODE BELOW (kept for reference, but never executed due to return above)
     // Check if we have a search parameter in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const searchKey = urlParams.get('search_key');
